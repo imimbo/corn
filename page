@@ -1,0 +1,30 @@
+/// Indicates where the progress indicators should be placed.
+enum ProgressPosition { top, bottom, none }
+
+/// This is used to specify the height of the progress indicator. Inline stories
+/// should use [small]
+enum IndicatorHeight { small, large }
+
+/// This is a representation of a story item (or page).
+class StoryItem {
+  /// Specifies how long the page should be displayed. It should be a reasonable
+  /// amount of time greater than 0 milliseconds.
+  final Duration duration;
+
+  /// Has this page been shown already? This is used to indicate that the page
+  /// has been displayed. If some pages are supposed to be skipped in a story,
+  /// mark them as shown `shown = true`.
+  ///
+  /// However, during initialization of the story view, all pages after the
+  /// last unshown page will have their `shown` attribute altered to false. This
+  /// is because the next item to be displayed is taken by the last unshown
+  /// story item.
+  bool shown;
+
+  /// The page content
+  final Widget view;
+  StoryItem(
+    this.view, {
+    required this.duration,
+    this.shown = false,
+  });
